@@ -33,6 +33,6 @@ requires
   fmx;
 
 contains
-  uRhoTrackBar in 'Source\uRhoTrackBar.pas';
+  uRhoTrackBar in '..\Source\uRhoTrackBar.pas';
 
 end.
