@@ -27,6 +27,11 @@ Registered on the component palette under the **Rhody Controls** category.
 - **Backward-compatible streaming** — the enum ordering and custom
   `DefineProperties` entries keep older `.fmx` files loading correctly.
 
+<p float="left">
+  <img src="Images/ScreenShot.png" width="300" />
+  <img src="Images/ScreenShotStyles.png" width="400" />
+</p>
+
 <img src="Images/ScreenShot.png" alt="Alt text" width="300"><img src="Images/ScreenShotStyles.png" alt="Alt text" width="400">
 
 ---
