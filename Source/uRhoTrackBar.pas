@@ -16,9 +16,8 @@ type
 
   TRhoTrackBar = class(TControl)
   private
-    // The track and thumb are now owner-drawn directly on the canvas (see
-    // Paint). No child TShape controls are involved, so nothing clips the
-    // thumb's stroke against a sub-control's bounds.
+    // The track and thumb are now owner-drawn directly on the canvas
+    FVersion : String;
     FThumbWidth: Single;   // logical thumb size
     FThumbHeight: Single;
     FThumbX: Single;       // thumb top-left within this control
@@ -136,6 +135,7 @@ type
     property OnPaint;
     property OnPainting;
 
+    property Version: string read FVersion write FVersion stored True;
     property Min: Single read FMin write SetMin;
     property Max: Single read FMax write SetMax;
     property Value: Single read FValue write SetValue;
@@ -175,6 +175,9 @@ end;
 constructor TRhoTrackBar.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
+
+  FVersion := '1.0.0.0';
+
   // Default bounds for horizontal setup
   Width := 150;
   Height := 45;
