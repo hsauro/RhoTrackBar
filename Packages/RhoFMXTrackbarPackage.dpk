@@ -25,7 +25,7 @@ package RhoFMXTrackbarPackage;
 {$IMAGEBASE $400000}
 {$DEFINE RELEASE}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'Trackbar for FMX'}
+{$DESCRIPTION 'Custom Trackbar for FMX'}
 {$IMPLICITBUILD ON}
 
 requires
