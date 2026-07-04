@@ -37,6 +37,7 @@ USes System.Math;
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   Edit1.text := Format('%.2f', [RhoTrackBar1.Value]);
+  SetColorValue(RhoTrackBar2.Value);
   ProgressBar1.Value := RhoTrackBar2.Value;
 end;
 
