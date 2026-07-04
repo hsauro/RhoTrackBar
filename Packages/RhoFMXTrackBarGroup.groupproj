@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{50B6B04B-1338-4FD9-A8B3-DD5F2412C353}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="RhoFMXTrackbarPackage.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Demo\TrackBarDemoProject.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="RhoFMXTrackbarPackage">
+        <MSBuild Projects="RhoFMXTrackbarPackage.dproj"/>
+    </Target>
+    <Target Name="RhoFMXTrackbarPackage:Clean">
+        <MSBuild Projects="RhoFMXTrackbarPackage.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="RhoFMXTrackbarPackage:Make">
+        <MSBuild Projects="RhoFMXTrackbarPackage.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TrackBarDemoProject">
+        <MSBuild Projects="..\Demo\TrackBarDemoProject.dproj"/>
+    </Target>
+    <Target Name="TrackBarDemoProject:Clean">
+        <MSBuild Projects="..\Demo\TrackBarDemoProject.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TrackBarDemoProject:Make">
+        <MSBuild Projects="..\Demo\TrackBarDemoProject.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="RhoFMXTrackbarPackage;TrackBarDemoProject"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="RhoFMXTrackbarPackage:Clean;TrackBarDemoProject:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="RhoFMXTrackbarPackage:Make;TrackBarDemoProject:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
