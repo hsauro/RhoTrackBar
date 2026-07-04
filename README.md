@@ -28,7 +28,7 @@ Registered on the component palette under the **Rhody Controls** category.
   `DefineProperties` entries keep older `.fmx` files loading correctly.
 
 <p float="left">
-  <img src="Images/ScreenShot.png" width="40%" /> &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="Images/ScreenShot.png" width="40%"  hspace="10" /> 
   <img src="Images/ScreenShotStyles.png" width="40%" />
 </p>
 
