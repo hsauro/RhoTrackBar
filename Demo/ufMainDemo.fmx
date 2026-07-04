@@ -19,6 +19,7 @@ object frmMain: TfrmMain
     Version = '1.0.0.0'
     Max = 100.000000000000000000
     Value = 40.000000000000000000
+    Increment = 1.000000000000000000
     TickFrequency = 10.000000000000000000
     ShowTicks = True
     ShowLabels = True
@@ -61,6 +62,7 @@ object frmMain: TfrmMain
     Version = '1.0.0.0'
     Max = 100.000000000000000000
     Value = 10.000000000000000000
+    Increment = 1.000000000000000000
     TickFrequency = 10.000000000000000000
     ShowTicks = True
     ShowLabels = True
@@ -94,6 +96,7 @@ object frmMain: TfrmMain
     Version = '1.0.0.0'
     Max = 100.000000000000000000
     Value = 40.000000000000000000
+    Increment = 1.000000000000000000
     TickFrequency = 10.000000000000000000
     ShowTicks = True
     ShowLabels = True
@@ -121,6 +124,7 @@ object frmMain: TfrmMain
     Version = '1.0.0.0'
     Max = 100.000000000000000000
     Value = 40.000000000000000000
+    Increment = 1.000000000000000000
     TickFrequency = 10.000000000000000000
     ShowTicks = True
     ShowLabels = True
@@ -148,6 +152,7 @@ object frmMain: TfrmMain
     Version = '1.0.0.0'
     Max = 100.000000000000000000
     Value = 40.000000000000000000
+    Increment = 1.000000000000000000
     TickFrequency = 20.000000000000000000
     ShowTicks = True
     ShowLabels = True
@@ -175,6 +180,7 @@ object frmMain: TfrmMain
     Version = '1.0.0.0'
     Max = 100.000000000000000000
     Value = 10.000000000000000000
+    Increment = 1.000000000000000000
     TickFrequency = 10.000000000000000000
     ShowTicks = True
     ShowLabels = True
@@ -202,6 +208,7 @@ object frmMain: TfrmMain
     Version = '1.0.0.0'
     Max = 100.000000000000000000
     Value = 60.000000000000000000
+    Increment = 1.000000000000000000
     TickFrequency = 10.000000000000000000
     ShowTicks = True
     ShowLabels = True
@@ -229,6 +236,7 @@ object frmMain: TfrmMain
     Version = '1.0.0.0'
     Max = 100.000000000000000000
     Value = 40.000000000000000000
+    Increment = 1.000000000000000000
     TickFrequency = 20.000000000000000000
     ShowTicks = True
     ShowLabels = True
@@ -257,6 +265,7 @@ object frmMain: TfrmMain
     Version = '1.0.0.0'
     Max = 100.000000000000000000
     Value = 40.000000000000000000
+    Increment = 1.000000000000000000
     TickFrequency = 10.000000000000000000
     ShowTicks = True
     ShowLabels = True
@@ -284,6 +293,7 @@ object frmMain: TfrmMain
     Version = '1.0.0.0'
     Max = 100.000000000000000000
     Value = 40.000000000000000000
+    Increment = 1.000000000000000000
     TickFrequency = 10.000000000000000000
     ShowTicks = True
     ShowLabels = True
@@ -311,6 +321,7 @@ object frmMain: TfrmMain
     Version = '1.0.0.0'
     Max = 100.000000000000000000
     Value = 40.000000000000000000
+    Increment = 1.000000000000000000
     TickFrequency = 10.000000000000000000
     ShowTicks = True
     ShowLabels = True
@@ -338,6 +349,7 @@ object frmMain: TfrmMain
     Version = '1.0.0.0'
     Max = 10.000000000000000000
     Value = 2.500000000000000000
+    Increment = 1.000000000000000000
     TickFrequency = 2.000000000000000000
     ShowTicks = True
     ShowLabels = True
@@ -364,6 +376,7 @@ object frmMain: TfrmMain
     Version = '1.0.0.0'
     Max = 100.000000000000000000
     Value = 40.000000000000000000
+    Increment = 1.000000000000000000
     TickFrequency = 10.000000000000000000
     ShowTicks = True
     ShowLabels = False
@@ -391,6 +404,7 @@ object frmMain: TfrmMain
     Version = '1.0.0.0'
     Max = 100.000000000000000000
     Value = 40.000000000000000000
+    Increment = 1.000000000000000000
     TickFrequency = 10.000000000000000000
     ShowTicks = False
     ShowLabels = False

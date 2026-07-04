@@ -22,6 +22,8 @@ Registered on the component palette under the **Rhody Controls** category.
   size and an optional value **suffix** (e.g. `"%"`, `" dB"`).
 - **Live tracking** toggle — fire `OnChange` continuously while dragging, or
   only once on release.
+- **Keyboard control** — the thumb responds to the arrow keys (and Home/End),
+  matching the built-in FMX trackbar, with a configurable step (`Increment`).
 - **Backward-compatible streaming** — the enum ordering and custom
   `DefineProperties` entries keep older `.fmx` files loading correctly.
 
@@ -92,6 +94,7 @@ bar and a colour-interpolated rectangle from several trackbars.
 | `Max` | `Single` | `100` | Maximum value. |
 | `Value` | `Single` | `0` | Current value; always clamped to `[Min, Max]`. |
 | `Orientation` | `TOrientation` | `Horizontal` | Horizontal or vertical layout. |
+| `Increment` | `Single` | `1` | Value step applied per arrow-key press (must be `> 0`). |
 | `LiveTracking` | `Boolean` | `True` | Fire `OnChange` while dragging (`True`) or only on release (`False`). |
 
 ### Ticks & labels
@@ -148,6 +151,28 @@ as well.
 
 ---
 
+## Keyboard
+
+The control is focusable (`TabStop` is enabled), so it can be reached with **Tab**
+or by clicking on it. Once focused, it responds to the arrow keys just like the
+built-in FMX trackbar. Each press changes `Value` by `Increment` (default `1`)
+and fires `OnChange`.
+
+| Key | Horizontal | Vertical |
+|-----|------------|----------|
+| **Left** | move thumb left (value −) | value − |
+| **Right** | move thumb right (value +) | value + |
+| **Up** | move thumb left (value −) | move thumb up (value +) |
+| **Down** | move thumb right (value +) | move thumb down (value −) |
+| **Home** | jump to `Min` | jump to `Min` |
+| **End** | jump to `Max` | jump to `Max` |
+
+Set `Increment` to tune the step — e.g. `0.1` for a fine `0..1` slider, or a
+larger value for coarse jumps. `LiveTracking` only affects mouse dragging; arrow
+keys always fire `OnChange` on each press.
+
+---
+
 ## How it works
 
 - **`Paint`** draws the track, then tick marks (if `ShowTicks`), then the thumb
@@ -156,8 +181,11 @@ as well.
   track ends are inset by half the thumb so it never overhangs at `Min`/`Max`.
 - **Thumb geometry** is rebuilt each paint as a `TPathData` in absolute control
   coordinates, snapped to the device-pixel grid for crisp edges under scaling.
-- **Mouse handling** captures the pointer on `MouseDown`, maps coordinates to a
-  value in `CalculateValueFromCoords`, and releases capture on `MouseUp`.
+- **Mouse handling** captures the pointer on `MouseDown` (also taking keyboard
+  focus), maps coordinates to a value in `CalculateValueFromCoords`, and releases
+  capture on `MouseUp`.
+- **Keyboard handling** overrides `KeyDown`; handled keys are swallowed so they
+  don't bubble up to a parent (e.g. scrolling) or move focus off the control.
 
 ---
 

@@ -9,6 +9,9 @@
         <Projects Include="..\Demo\TrackBarDemoProject.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="..\Demo\TrackbarStylesDemoProject.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="TrackBarDemoProject:Make">
         <MSBuild Projects="..\Demo\TrackBarDemoProject.dproj" Targets="Make"/>
     </Target>
+    <Target Name="TrackbarStylesDemoProject">
+        <MSBuild Projects="..\Demo\TrackbarStylesDemoProject.dproj"/>
+    </Target>
+    <Target Name="TrackbarStylesDemoProject:Clean">
+        <MSBuild Projects="..\Demo\TrackbarStylesDemoProject.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TrackbarStylesDemoProject:Make">
+        <MSBuild Projects="..\Demo\TrackbarStylesDemoProject.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="RhoFMXTrackbarPackage;TrackBarDemoProject"/>
+        <CallTarget Targets="RhoFMXTrackbarPackage;TrackBarDemoProject;TrackbarStylesDemoProject"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="RhoFMXTrackbarPackage:Clean;TrackBarDemoProject:Clean"/>
+        <CallTarget Targets="RhoFMXTrackbarPackage:Clean;TrackBarDemoProject:Clean;TrackbarStylesDemoProject:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="RhoFMXTrackbarPackage:Make;TrackBarDemoProject:Make"/>
+        <CallTarget Targets="RhoFMXTrackbarPackage:Make;TrackBarDemoProject:Make;TrackbarStylesDemoProject:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

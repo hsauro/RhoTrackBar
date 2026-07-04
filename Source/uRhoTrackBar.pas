@@ -32,6 +32,7 @@ type
     FShowlabels : Boolean;
     FIsDragging: Boolean;
     FLiveTracking: Boolean;
+    FIncrement: Single;    // value step per arrow-key press
 
     FOnChange: TNotifyEvent;
     FOnTracking: TNotifyEvent; // New event field tracking pointer
@@ -67,6 +68,7 @@ type
     procedure SetTrackColor(const Value: TAlphaColor);
     procedure SetLabelColor(const Value: TAlphaColor);
     procedure SetFontSize(const Value: Single);
+    procedure SetIncrement(const Value: Single);
 
     function  GetThumbHeight: Single;
     function  GetThumbWidth: Single;
@@ -88,6 +90,7 @@ type
     procedure MouseDown(Button: TMouseButton; Shift: TShiftState; X, Y: Single); override;
     procedure MouseMove(Shift: TShiftState; X, Y: Single); override;
     procedure MouseUp(Button: TMouseButton; Shift: TShiftState; X, Y: Single); override;
+    procedure KeyDown(var Key: Word; var KeyChar: WideChar; Shift: TShiftState); override;
   public
     constructor Create(AOwner: TComponent); override;
   published
@@ -139,6 +142,7 @@ type
     property Min: Single read FMin write SetMin;
     property Max: Single read FMax write SetMax;
     property Value: Single read FValue write SetValue;
+    property Increment: Single read FIncrement write SetIncrement; // arrow-key step
     property LiveTracking: Boolean read FLiveTracking write FLiveTracking default True;
     property TickFrequency: Single read FTickFrequency write SetTickFrequency;
     property ShowTicks: Boolean read FShowTicks write SetShowTicks;
@@ -189,6 +193,11 @@ begin
   FOrientation := TOrientation.Horizontal;
   FIsDragging := False;
   FLiveTracking := True;
+  FIncrement := 1;
+
+  // Allow the control to receive focus so it can respond to arrow keys.
+  CanFocus := True;
+  TabStop := True;
   FShowLabels := True;
   FLabelFontSize := 10;
 
@@ -724,6 +733,7 @@ begin
   inherited;
   if Button = TMouseButton.mbLeft then
   begin
+    if CanFocus then SetFocus; // take keyboard focus so arrow keys work
     FIsDragging := True;
     Root.Captured := Self;
     CalculateValueFromCoords(X, Y);
@@ -755,6 +765,48 @@ begin
       if Assigned(FOnChange) then FOnChange(Self);
     end;
   end;
+end;
+
+procedure TRhoTrackBar.KeyDown(var Key: Word; var KeyChar: WideChar; Shift: TShiftState);
+begin
+  // Arrow keys nudge the thumb, matching the built-in FMX trackbar:
+  //   Left/Right  -> decrease/increase value
+  //   Up/Down     -> horizontal: move thumb left/right (decrease/increase);
+  //                  vertical:   move thumb up/down    (increase/decrease)
+  //   Home/End    -> jump to Min/Max
+  // SetValue clamps to [Min, Max] and fires OnChange when the value changes.
+  case Key of
+    vkLeft:
+      SetValue(FValue - FIncrement);
+
+    vkRight:
+      SetValue(FValue + FIncrement);
+
+    vkUp:
+      if FOrientation = TOrientation.Horizontal then
+        SetValue(FValue - FIncrement)   // thumb moves left
+      else
+        SetValue(FValue + FIncrement);  // thumb moves up
+
+    vkDown:
+      if FOrientation = TOrientation.Horizontal then
+        SetValue(FValue + FIncrement)   // thumb moves right
+      else
+        SetValue(FValue - FIncrement);  // thumb moves down
+
+    vkHome:
+      SetValue(FMin);
+
+    vkEnd:
+      SetValue(FMax);
+  else
+    inherited;
+    Exit;
+  end;
+
+  // We handled the key; swallow it so it doesn't bubble up (e.g. scrolling
+  // a parent) or move focus off the control.
+  Key := 0;
 end;
 
 
@@ -822,6 +874,14 @@ begin
     UpdateThumbPosition;
     if Assigned(FOnChange) then FOnChange(Self);
   end;
+end;
+
+procedure TRhoTrackBar.SetIncrement(const Value: Single);
+begin
+  // Keep the step positive; a non-positive step would make arrow keys inert
+  // or move the thumb the wrong way.
+  if (FIncrement <> Value) and (Value > 0) then
+    FIncrement := Value;
 end;
 
 procedure TRhoTrackBar.SetTickFrequency(const Value: Single);
