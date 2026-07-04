@@ -27,6 +27,8 @@ Registered on the component palette under the **Rhody Controls** category.
 - **Backward-compatible streaming** — the enum ordering and custom
   `DefineProperties` entries keep older `.fmx` files loading correctly.
 
+The trackbar can be made to work with styles by adusting the colors to match the style colors. 
+
 <p float="left">
   <img src="Images/ScreenShot.png" width="30%"  hspace="25" /> 
   <img src="Images/ScreenShotStyles.png" width="40%" />
